@@ -1,26 +1,371 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #0a0a0a;
+  --neon-blue: rgb(0, 243, 255);
+  --neon-purple: rgb(180, 0, 255);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  color: white;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 243, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-blue);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 243, 255, 0.8);
+}
+
+/* Tech Grid Background */
+.tech-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 243, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+}
+
+/* Container */
+.section-container {
+  @apply container mx-auto px-4 sm:px-6 lg:px-8 relative;
+}
+
+/* Navigation */
+.nav-link {
+  @apply text-slate-300 hover:text-[var(--neon-blue)] transition-colors relative overflow-hidden;
+}
+
+.nav-link::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-full h-0.5 bg-[var(--neon-blue)] transform scale-x-0 transition-transform origin-left;
+}
+
+.nav-link:hover::after {
+  @apply scale-x-100;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+  @apply fixed inset-0 bg-[var(--background)] z-40 flex items-center justify-center;
+  backdrop-filter: blur(10px);
+}
+
+.hamburger {
+  @apply relative w-6 h-6 flex flex-col justify-center items-center md:hidden z-50;
+}
+
+.hamburger span {
+  @apply w-full h-0.5 bg-white rounded-full transition-all duration-300;
+}
+
+.hamburger span:first-child {
+  @apply -translate-y-1.5;
+}
+
+.hamburger span:last-child {
+  @apply translate-y-1.5;
+}
+
+.hamburger.active span:first-child {
+  @apply rotate-45 translate-y-0.5;
+}
+
+.hamburger.active span:last-child {
+  @apply -rotate-45 -translate-y-0.5;
+}
+
+/* Tech Text Effect */
+.tech-text {
+  position: relative;
+  text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.tech-text::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  color: var(--neon-blue);
+  filter: blur(8px);
+}
+
+.glow {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px var(--neon-blue),
+                 0 0 20px var(--neon-blue),
+                 0 0 30px var(--neon-blue);
+  }
+  to {
+    text-shadow: 0 0 20px var(--neon-blue),
+                 0 0 30px var(--neon-blue),
+                 0 0 40px var(--neon-blue);
+  }
+}
+
+/* Tech Cards */
+.tech-card {
+  @apply rounded-lg border border-slate-800 transition-all duration-300 relative;
+  background: rgba(10, 10, 15, 0.9);
+}
+
+.tech-card:hover {
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+}
+
+/* Project Cards */
+.project-card {
+  @apply bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 border border-slate-700 hover:border-blue-500/50 transition-colors;
+}
+
+.tech-tag {
+  @apply px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-sm font-medium;
+}
+
+/* Hero Section */
+.hero-section {
+  @apply relative min-h-screen flex items-center justify-center overflow-hidden;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
+}
+
+.hero-section::before {
+  content: '';
+  @apply absolute inset-0 z-0;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+}
+
+.hero-content {
+  @apply relative z-10 text-center px-4;
+}
+
+/* Contact Section */
+.contact-section {
+  @apply relative py-16;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.95));
+}
+
+.contact-form {
+  @apply bg-slate-900 rounded-lg p-8 relative z-10;
+  border: 1px solid rgba(0, 243, 255, 0.1);
+}
+
+/* Form Inputs */
+.form-input {
+  @apply w-full px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+}
+
+.form-input:focus {
+  @apply outline-none border-blue-500;
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+}
+
+/* Section Backgrounds */
+.section-bg {
+  @apply relative;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.section-bg::before {
+  content: '';
+  @apply absolute inset-0;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.9));
+}
+
+/* Card */
+.card {
+  @apply p-6 rounded-lg transition-all duration-300 relative;
+  background: linear-gradient(45deg, rgba(0, 243, 255, 0.05), rgba(180, 0, 255, 0.05));
+  border: 1px solid rgba(0, 243, 255, 0.1);
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  @apply absolute inset-0 rounded-lg;
+  background: linear-gradient(45deg, 
+    rgba(0, 243, 255, 0.1), 
+    rgba(180, 0, 255, 0.1)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card:hover {
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Ensure text is always visible */
+.card *, .tech-card * {
+  @apply relative z-10;
+}
+
+/* Improve text contrast */
+.text-slate-300 {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Animated Border */
+.animated-border {
+  @apply bg-slate-900/80 backdrop-blur-sm;
+  background: linear-gradient(var(--background), var(--background)) padding-box,
+              linear-gradient(to right, var(--neon-blue), var(--neon-purple)) border-box;
+  border-bottom: 1px solid transparent;
+}
+
+/* Cyber Button */
+.cyber-button {
+  @apply relative py-3 px-6 bg-transparent font-medium rounded-lg overflow-hidden transition-all duration-300 inline-flex items-center justify-center;
+  color: var(--neon-blue);
+  border: 1px solid var(--neon-blue);
+  background: rgba(0, 243, 255, 0.05);
+  text-shadow: 0 0 8px rgba(0, 243, 255, 0.5);
+}
+
+.cyber-button::before {
+  content: '';
+  @apply absolute inset-0;
+  background: var(--neon-blue);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cyber-button::after {
+  content: '';
+  @apply absolute inset-0;
+  background: linear-gradient(45deg,
+    rgba(0, 243, 255, 0.1),
+    rgba(0, 243, 255, 0.2),
+    rgba(180, 0, 255, 0.1)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cyber-button span {
+  @apply relative z-10;
+}
+
+.cyber-button:hover {
+  transform: translateY(-1px);
+  border-color: var(--neon-blue);
+  box-shadow: 
+    0 0 20px rgba(0, 243, 255, 0.4),
+    inset 0 0 20px rgba(0, 243, 255, 0.2);
+  text-shadow: 0 0 12px rgba(0, 243, 255, 0.8);
+}
+
+.cyber-button:hover::before {
+  opacity: 0.1;
+}
+
+.cyber-button:hover::after {
+  opacity: 1;
+}
+
+.cyber-button:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 0 10px rgba(0, 243, 255, 0.4),
+    inset 0 0 10px rgba(0, 243, 255, 0.3);
+}
+
+/* Secondary Cyber Button */
+.cyber-button-secondary {
+  @apply relative py-3 px-6 bg-transparent font-medium rounded-lg overflow-hidden transition-all duration-300 inline-flex items-center justify-center;
+  color: var(--neon-purple);
+  border: 1px solid var(--neon-purple);
+  background: rgba(180, 0, 255, 0.05);
+  text-shadow: 0 0 8px rgba(180, 0, 255, 0.5);
+}
+
+.cyber-button-secondary::before {
+  content: '';
+  @apply absolute inset-0;
+  background: var(--neon-purple);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cyber-button-secondary::after {
+  content: '';
+  @apply absolute inset-0;
+  background: linear-gradient(45deg,
+    rgba(180, 0, 255, 0.1),
+    rgba(180, 0, 255, 0.2),
+    rgba(0, 243, 255, 0.1)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cyber-button-secondary:hover {
+  transform: translateY(-1px);
+  border-color: var(--neon-purple);
+  box-shadow: 
+    0 0 20px rgba(180, 0, 255, 0.4),
+    inset 0 0 20px rgba(180, 0, 255, 0.2);
+  text-shadow: 0 0 12px rgba(180, 0, 255, 0.8);
+}
+
+.cyber-button-secondary:hover::before {
+  opacity: 0.1;
+}
+
+.cyber-button-secondary:hover::after {
+  opacity: 1;
+}
+
+.cyber-button-secondary:active {
+  transform: translateY(0);
+  box-shadow: 
+    0 0 10px rgba(180, 0, 255, 0.4),
+    inset 0 0 10px rgba(180, 0, 255, 0.3);
+}
+
+/* Disabled Button States */
+.cyber-button:disabled,
+.cyber-button-secondary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.cyber-button:disabled::before,
+.cyber-button:disabled::after,
+.cyber-button-secondary:disabled::before,
+.cyber-button-secondary:disabled::after {
+  display: none;
+}
+
+/* Team Heading */
+.team-heading {
+  -webkit-text-stroke: 1px rgba(255,255,255,0.1);
+  filter: drop-shadow(0 0 30px rgba(255,255,255,0.5));
 }
