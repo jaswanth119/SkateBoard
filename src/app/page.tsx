@@ -19,7 +19,6 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const scrollToSection = (sectionId: string) => {
@@ -65,13 +64,6 @@ export default function Home() {
 
   useEffect(() => {
     try {
-      // Setup video
-      const video = document.getElementById('hero-video') as HTMLVideoElement;
-      if (video) {
-        video.onloadeddata = () => setIsVideoLoaded(true);
-        video.play().catch(error => console.log('Auto-play prevented:', error));
-      }
-
       // Intersection Observer for sections
       const observer = new IntersectionObserver(
         (entries) => {
