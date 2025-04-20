@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800px" height="800px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#00ffff;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#00ccff;stop-opacity:1" />
+        </linearGradient>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <!-- Deck -->
+        <path d="M10,45 C10,40 20,35 50,35 C80,35 90,40 90,45 L90,55 C90,60 80,65 50,65 C20,65 10,60 10,55 L10,45 Z" fill="url(#glow)" />
+        <!-- Wheels -->
+        <circle cx="25" cy="40" r="6" fill="#00ffff" />
+        <circle cx="75" cy="40" r="6" fill="#00ffff" />
+        <circle cx="25" cy="60" r="6" fill="#00ffff" />
+        <circle cx="75" cy="60" r="6" fill="#00ffff" />
+        <!-- Trucks -->
+        <rect x="20" y="42" width="10" height="2" fill="#00ffff" />
+        <rect x="70" y="42" width="10" height="2" fill="#00ffff" />
+        <rect x="20" y="58" width="10" height="2" fill="#00ffff" />
+        <rect x="70" y="58" width="10" height="2" fill="#00ffff" />
+    </g>
+</svg>

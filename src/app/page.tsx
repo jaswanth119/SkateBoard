@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaCode, FaMobile, FaPaintBrush } from 'react-icons/fa';
+import { FaCode, FaMobile, FaPaintBrush, FaBrain } from 'react-icons/fa';
 import Image from 'next/image';
 import { FaTwitter, FaLinkedin, FaGithub, FaEnvelope, FaPhone, FaLink } from 'react-icons/fa';
 
@@ -146,33 +146,78 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/90 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <motion.h1
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text"
-            >
-              SkateBord
-            </motion.h1>
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-6">
-              <button onClick={() => scrollToSection('home')} className={`nav-link ${activeSection === 'home' ? 'active' : ''}`}>Home</button>
-              <button onClick={() => scrollToSection('services')} className={`nav-link ${activeSection === 'services' ? 'active' : ''}`}>Services</button>
-              <button onClick={() => scrollToSection('projects')} className={`nav-link ${activeSection === 'projects' ? 'active' : ''}`}>Projects</button>
-              <button onClick={() => scrollToSection('team')} className={`nav-link ${activeSection === 'team' ? 'active' : ''}`}>Team</button>
-              <button onClick={() => scrollToSection('contact')} className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`}>Contact</button>
+      {/* Navbar */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isMobileMenuOpen ? 'bg-[#0B0B13]/90 backdrop-blur-md' : 'bg-transparent'}`}>
+        <div className="container mx-auto px-4">
+          <div className="flex items-center justify-between h-20">
+            <div className="flex items-center">
+              <Image 
+                src="/skateboard.svg" 
+                alt="SkateBord" 
+                width={40} 
+                height={40} 
+                className="mr-2 hover:rotate-180 transition-transform duration-500" 
+              />
+              <span className="text-xl font-bold neon-text">SkateBord</span>
             </div>
-            {/* Mobile Menu Button */}
-            <button 
-              className={`hamburger ${isMobileMenuOpen ? 'active' : ''}`}
+            <div className="hidden md:flex space-x-8">
+              <button 
+                onClick={() => scrollToSection('home')} 
+                className={`hover:text-cyan-400 transition-colors ${activeSection === 'home' ? 'text-cyan-400' : 'text-gray-300'}`}
+              >
+                Home
+              </button>
+              <button 
+                onClick={() => scrollToSection('services')} 
+                className={`hover:text-cyan-400 transition-colors ${activeSection === 'services' ? 'text-cyan-400' : 'text-gray-300'}`}
+              >
+                Services
+              </button>
+              <button 
+                onClick={() => scrollToSection('projects')} 
+                className={`hover:text-cyan-400 transition-colors ${activeSection === 'projects' ? 'text-cyan-400' : 'text-gray-300'}`}
+              >
+                Projects
+              </button>
+              <button 
+                onClick={() => scrollToSection('team')} 
+                className={`hover:text-cyan-400 transition-colors ${activeSection === 'team' ? 'text-cyan-400' : 'text-gray-300'}`}
+              >
+                Team
+              </button>
+              <button 
+                onClick={() => scrollToSection('contact')} 
+                className={`hover:text-cyan-400 transition-colors ${activeSection === 'contact' ? 'text-cyan-400' : 'text-gray-300'}`}
+              >
+                Contact
+              </button>
+            </div>
+            <button
               onClick={toggleMobileMenu}
-              aria-label="Toggle menu"
+              className="md:hidden text-white focus:outline-none"
             >
-              <span />
-              <span />
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {isMobileMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
             </button>
           </div>
         </div>
@@ -262,7 +307,7 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Web Development */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -334,12 +379,36 @@ export default function Home() {
                 </ul>
               </div>
             </motion.div>
+
+            {/* Machine Learning */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="service-card"
+            >
+              <div className="p-6">
+                <FaBrain className="text-4xl mb-4 text-cyan-500" />
+                <h3 className="text-xl font-bold mb-3">Machine Learning</h3>
+                <p className="text-slate-400 mb-4">
+                  AI-powered solutions to enhance skating performance and experience:
+                </p>
+                <ul className="text-slate-400 list-disc list-inside space-y-2">
+                  <li>Trick detection and analysis</li>
+                  <li>Style recognition</li>
+                  <li>Performance tracking</li>
+                  <li>Personalized training</li>
+                  <li>Real-time feedback</li>
+                </ul>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="section-bg py-20">
+      <section id="projects" className="py-20">
         <div className="tech-grid absolute inset-0 opacity-20" />
         <motion.div 
           className="section-container"
