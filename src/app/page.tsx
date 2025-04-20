@@ -2,9 +2,10 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaCode, FaMobile, FaPaintBrush, FaBrain } from 'react-icons/fa';
+import { FaCode, FaMobile, FaPaintBrush, FaBrain, FaLinkedin, FaEnvelope, FaPhone, FaLink } from 'react-icons/fa';
 import Image from 'next/image';
-import { FaTwitter, FaLinkedin, FaGithub, FaEnvelope, FaPhone, FaLink } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
+import { initEmailJS } from '../utils/emailjs';
 
 interface FormData {
   name: string;
@@ -38,29 +39,47 @@ export default function Home() {
   const onSubmit = async (formData: FormData) => {
     try {
       setIsSubmitting(true);
+      setError(null);
       
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      console.log('Form submitted:', formData);
-      
-      // Clear form and show success message
-      reset();
-      setIsSubmitted(true);
-      setShowSuccessMessage(true);
-      
-      // Hide success message after 5 seconds
-      setTimeout(() => {
-        setShowSuccessMessage(false);
-        setIsSubmitted(false);
-      }, 5000);
-    } catch (error: unknown) {
-      console.error('Error submitting form:', error);
-      alert('Failed to send message. Please try again.');
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        'service_kgymbij',
+        'template_lhc4qom',
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_name: 'SkateBoard Team',
+          reply_to: formData.email,
+        },
+        'UFCE6sqWaV_6OrLas'
+      );
+
+      if (result.status === 200) {
+        // Clear form and show success message
+        reset();
+        setIsSubmitted(true);
+        setShowSuccessMessage(true);
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          setShowSuccessMessage(false);
+        }, 5000);
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (err) {
+      setError('Failed to send message. Please try again later.');
+      console.error('Form submission error:', err);
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  useEffect(() => {
+    // Initialize EmailJS
+    initEmailJS();
+  }, []);
 
   useEffect(() => {
     try {
@@ -124,7 +143,7 @@ export default function Home() {
 
         <div className="relative z-10 text-center max-w-5xl mx-auto px-4">
           <h1 className="text-6xl md:text-8xl font-bold mb-8 neon-text">
-            SkateBord Tech
+            SkateBoard Tech
           </h1>
           <p className="text-xl md:text-2xl text-gray-400 mb-16">
             Pushing the boundaries of technology in the skating world
@@ -153,12 +172,12 @@ export default function Home() {
             <div className="flex items-center">
               <Image 
                 src="/skateboard.svg" 
-                alt="SkateBord" 
+                alt="SkateBoard" 
                 width={40} 
                 height={40} 
                 className="mr-2 hover:rotate-180 transition-transform duration-500" 
               />
-              <span className="text-xl font-bold neon-text">SkateBord</span>
+              <span className="text-xl font-bold neon-text">SkateBoard</span>
             </div>
             <div className="hidden md:flex space-x-8">
               <button 
@@ -825,7 +844,7 @@ export default function Home() {
       <footer className="py-8 bg-slate-900/80 backdrop-blur-sm border-t border-slate-800">
         <div className="container mx-auto px-4">
           <div className="text-center">
-            <p className="text-slate-400"> 2025 Skate-Bord. All rights reserved.</p>
+            <p className="text-slate-400"> 2025 SkateBoard. All rights reserved.</p>
           </div>
         </div>
       </footer>

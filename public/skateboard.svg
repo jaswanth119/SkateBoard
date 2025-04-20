@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="800px" height="800px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-        <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style="stop-color:#00ffff;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#00ccff;stop-opacity:1" />
-        </linearGradient>
-    </defs>
+<svg width="800px" height="800px" viewBox="0 0 200 80" version="1.1" xmlns="http://www.w3.org/2000/svg">
     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <!-- Deck -->
-        <path d="M10,45 C10,40 20,35 50,35 C80,35 90,40 90,45 L90,55 C90,60 80,65 50,65 C20,65 10,60 10,55 L10,45 Z" fill="url(#glow)" />
-        <!-- Wheels -->
-        <circle cx="25" cy="40" r="6" fill="#00ffff" />
-        <circle cx="75" cy="40" r="6" fill="#00ffff" />
-        <circle cx="25" cy="60" r="6" fill="#00ffff" />
-        <circle cx="75" cy="60" r="6" fill="#00ffff" />
-        <!-- Trucks -->
-        <rect x="20" y="42" width="10" height="2" fill="#00ffff" />
-        <rect x="70" y="42" width="10" height="2" fill="#00ffff" />
-        <rect x="20" y="58" width="10" height="2" fill="#00ffff" />
-        <rect x="70" y="58" width="10" height="2" fill="#00ffff" />
+        <!-- Main Logo Path -->
+        <path d="M20,40 C20,20 35,15 70,15 L130,15 C165,15 180,20 180,40 C180,60 165,65 130,65 L70,65 C35,65 20,60 20,40 Z" 
+              fill="#0B0B13" 
+              stroke="#00ffff" 
+              stroke-width="2"/>
+        
+        <!-- Wheel Dots -->
+        <circle cx="40" cy="15" r="3" fill="#00ffff" />
+        <circle cx="160" cy="15" r="3" fill="#00ffff" />
+        <circle cx="40" cy="65" r="3" fill="#00ffff" />
+        <circle cx="160" cy="65" r="3" fill="#00ffff" />
+        
+        <!-- Text -->
+        <text x="100" y="45" 
+              font-family="Arial Black, sans-serif" 
+              font-size="32" 
+              fill="#00ffff" 
+              text-anchor="middle" 
+              dominant-baseline="middle"
+              letter-spacing="2">skate</text>
     </g>
 </svg>

@@ -5,7 +5,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'SkateBord Tech',
+  title: 'SkateBoard Tech',
   description: 'Pushing the boundaries of technology in the skating world',
   icons: {
     icon: '/skateboard.svg',
