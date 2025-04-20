@@ -538,15 +538,14 @@ export default function Home() {
                   className="object-cover transform hover:scale-110 transition-transform duration-500"
                 />
               </div>
+
               <h3 className="text-xl font-bold mb-2">Jaswanth</h3>
               <p className="text-blue-400 mb-4">Frontend Developer</p>
               <p className="text-slate-400 mb-4">
                 Passionate about creating beautiful and responsive web experiences.
               </p>
               <div className="flex justify-center space-x-4">
-                <a href="#" className="text-slate-400 hover:text-white"><FaTwitter /></a>
-                <a href="#" className="text-slate-400 hover:text-white"><FaLinkedin /></a>
-                <a href="#" className="text-slate-400 hover:text-white"><FaGithub /></a>
+                <a href="https://www.linkedin.com/in/jaswanth-mallampati-7a6b05221/" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white"><FaLinkedin /></a>
               </div>
             </motion.div>
 
@@ -562,20 +561,19 @@ export default function Home() {
                 <Image
                   src="/team/joel.jpg"
                   alt="Joel"
-                  fill
-                  style={{ objectFit: 'cover', objectPosition: 'center' }}
-                  className="transform hover:scale-110 transition-transform duration-500"
+                  width={400}
+                  height={400}
+                  className="object-cover w-full h-full transform hover:scale-110 transition-transform duration-500"
                 />
               </div>
+
               <h3 className="text-xl font-bold mb-2">Joel</h3>
               <p className="text-blue-400 mb-4">Mobile App Developer</p>
               <p className="text-slate-400 mb-4">
                 Specialized in creating seamless mobile applications for iOS and Android.
               </p>
               <div className="flex justify-center space-x-4">
-                <a href="#" className="text-slate-400 hover:text-white"><FaTwitter /></a>
-                <a href="#" className="text-slate-400 hover:text-white"><FaLinkedin /></a>
-                <a href="#" className="text-slate-400 hover:text-white"><FaGithub /></a>
+                <a href="https://www.linkedin.com/in/joel-john-a00715171" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white"><FaLinkedin /></a>
               </div>
             </motion.div>
 
@@ -596,15 +594,14 @@ export default function Home() {
                   className="object-cover transform hover:scale-110 transition-transform duration-500"
                 />
               </div>
+
               <h3 className="text-xl font-bold mb-2">Sanjay</h3>
               <p className="text-blue-400 mb-4">Mobile App Developer</p>
               <p className="text-slate-400 mb-4">
                 Expert in developing cross-platform mobile solutions with cutting-edge technology.
               </p>
               <div className="flex justify-center space-x-4">
-                <a href="#" className="text-slate-400 hover:text-white"><FaTwitter /></a>
-                <a href="#" className="text-slate-400 hover:text-white"><FaLinkedin /></a>
-                <a href="#" className="text-slate-400 hover:text-white"><FaGithub /></a>
+                <a href="https://www.linkedin.com/in/kondaveeti-sanjay" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white"><FaLinkedin /></a>
               </div>
             </motion.div>
           </div>
